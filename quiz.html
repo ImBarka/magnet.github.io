@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <style>
+
+        ::placeholder {
+            color: white;
+            opacity: 1; /* Untuk memastikan warna terlihat jelas */
+        }
+
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background: url('img/bg-menu.png') no-repeat center center fixed;
+            background-size: 100% 100%;
+            background-position: center;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .close-button:hover {
+            transform: scale(1.1);
+        }
+
+        .container, .quiz-container, .score-container {
+            background-color: #096cb7;
+            padding: 20px;
+            border-radius: 8px;
+            border: 7px solid #003F7F;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%; /* Ubah lebar menjadi 90% */
+            height: 60%;
+            max-width: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .container input {
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            font-size: 64px;
+            color: white;
+            background-color: transparent;
+            border: 8px solid #003F7F;
+            border-radius: 5px;
+            padding: 10px;
+            outline: none;
+            text-align: center;
+            width: 30%;
+        }
+
+        .start-button {
+            margin-top: 20px;
+            cursor: pointer;
+            width: 250px;
+            transition: transform 0.2s ease;
+        }
+
+        .start-button:hover {
+            transform: scale(1.1);
+        }
+
+        .quiz-container, .score-container {
+            position: absolute; 
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #096cb7;
+            padding: 20px;
+            border-radius: 8px;
+            color: white;
+            border: 7px solid #003F7F;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 90%; 
+            height: auto; 
+            max-width: none; 
+            display: none; 
+        }
+
+
+        .question, #scoreText {
+            font-size: 64px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+        
+
+        h2 {
+            text-align: center;
+            width: 100%;
+        }
+
+        .score-container p {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            color: white;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            background: #ffcc4d;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 32px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .option span {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/btn-close.png" class="close-button" onclick="window.location.href='menu.html'">
+    
+    <div class="container" id="startPage">
+        <input type="text" id="username" placeholder="Nama Anda">
+        <br>
+        <img src="img/btn-start.png" class="start-button" onclick="startQuiz()">
+    </div>
+    
+    <div class="quiz-container" id="quizPage">
+        <h2 class="question" id="questionText">Pertanyaan akan muncul di sini</h2>
+        <div id="options"></div>
+        <button class="next-button" onclick="nextQuestion()" style="display: none;">Selanjutnya</button>
+    </div>
+
+    <div class="score-container" id="scorePage">
+        <p id="scoreText"></p>
+        <button class="next-button" onclick="location.reload()" style="display: none;">Coba Lagi</button>
+    </div>
+    
+    <script>
+        let username = "";
+        let currentQuestion = 0;
+        let score = 0;
+        
+        const questions = [
+            { q: "Apa warna langit?", options: ["Merah", "Biru", "Hijau", "Kuning"], answer: 1 },
+            { q: "Berapa hasil 2 + 2?", options: ["3", "4", "5", "6"], answer: 1 },
+            { q: "Siapa Presiden pertama Indonesia?", options: ["Soeharto", "Megawati", "Soekarno", "Jokowi"], answer: 2 },
+            { q: "Apa ibukota Indonesia?", options: ["Jakarta", "Bandung", "Surabaya", "Medan"], answer: 0 },
+            { q: "Lambang negara Indonesia adalah?", options: ["Merpati", "Elang", "Garuda", "Rajawali"], answer: 2 }
+        ];
+        
+        function startQuiz() {
+            username = document.getElementById("username").value;
+            if (username.trim() === "") {
+                alert("Masukkan nama terlebih dahulu");
+                return;
+            }
+            document.getElementById("startPage").style.display = "none";
+            document.getElementById("quizPage").style.display = "block";
+            loadQuestion();
+        }
+        
+        function loadQuestion() {
+            if (currentQuestion >= questions.length) {
+                showScore();
+                return;
+            }
+            
+            const q = questions[currentQuestion];
+            document.getElementById("questionText").textContent = "Soal " + (currentQuestion + 1) + " - " + q.q;
+            const optionsDiv = document.getElementById("options");
+            optionsDiv.innerHTML = "";
+            q.options.forEach((option, index) => {
+                const optionDiv = document.createElement("div");
+                optionDiv.className = "option";
+                optionDiv.innerHTML = `<b>${String.fromCharCode(65 + index)}.</b> <span>${option}</span>`;
+                optionDiv.onclick = () => checkAnswer(index);
+                optionsDiv.appendChild(optionDiv);
+            });
+        }
+        
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            setTimeout(loadQuestion, 200); // Pindah ke soal berikutnya dengan jeda 500ms agar lebih smooth
+        }
+
+
+        function showScore() {
+            document.getElementById("quizPage").style.display = "none";
+            document.getElementById("scorePage").style.display = "block";
+
+            // Menghitung skor berdasarkan jumlah jawaban benar (1 soal = 20 poin)
+            let finalScore = score * 20;
+
+            // Menampilkan skor tanpa koma di antara nama dan nilai
+            document.getElementById("scoreText").textContent = username + " skor Anda: " + finalScore;
+        }
+
+
+    </script>
+</body>
+</html>

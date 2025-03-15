@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('img/bg-menu.png') no-repeat center center fixed;
+            background-size: 100% 100%;
+            background-position: center;
+            overflow: hidden;
+        }
+
+        /* Tombol silang */
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        /* Container menu */
+        .menu-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .menu-item {
+            width: 600px;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .menu-item:hover {
+            transform: scale(1.1);
+            opacity: 0.8;
+
+        }
+
+        /* Ornamen melayang */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .ornament {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .ornament1 {
+            width: 200px;
+            top: 60%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+
+        .ornament2 {
+            width: 160px;
+            bottom: 76%;
+            right: 5%;
+            animation-delay: 1.5s;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol silang -->
+    <img src="img/btn-close.png" class="close-btn" onclick="goBack()">
+
+    <!-- Ornamen -->
+    <img src="img/magnet.png" class="ornament ornament1">
+    <img src="img/magnet1.png" class="ornament ornament2">
+
+    <!-- Menu -->
+    <div class="menu-container">
+        <img src="img/btn-materi.png" class="menu-item" onclick="openPage('materi.html')">
+        <img src="img/btn-quiz.png" class="menu-item" onclick="openPage('quiz.html')">
+        <img src="img/btn-simulasi.png" class="menu-item" onclick="openPage('simulasi.html')">
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+
+        function openPage(page) {
+            window.location.href = page;
+        }
+    </script>
+
+</body>
+</html>

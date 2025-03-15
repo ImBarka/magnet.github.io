@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Materi</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #193a68; /* Ganti dengan warna biru yang sama */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
+        }
+
+        .container {
+            width: 80%; /* Ukuran lebih kecil */
+            max-width: 1400px; /* Batas maksimal */
+            position: relative;
+            box-shadow: 0 2px 8px rgba(63, 69, 81, 0.16);
+            border-radius: 8px;
+            overflow: hidden;
+            background: white; /* Latar belakang putih untuk kontras */
+            padding: 10px;
+        }
+
+        
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .embed-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .embed-container iframe {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Tombol Close -->
+<a href="menu.html">
+    <img src="img/btn-close.png" alt="Close" class="close-btn">
+</a>
+
+<!-- Kontainer Embed -->
+<div class="container">
+    <div class="embed-container">
+        <iframe loading="lazy"
+            src="https://www.canva.com/design/DAGhvLQaOEk/iwMvzze5v52iE-Z3rlxJNQ/view?embed"
+            allowfullscreen="allowfullscreen">
+        </iframe>
+    </div>
+</div>
+
+</body>
+</html>

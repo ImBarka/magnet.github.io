@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Book</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            background: url('img/bg-landing.png') no-repeat center center fixed;
+            background-size: 100% 100%;
+            background-position: center;
+            overflow: hidden; 
+        }
+
+        .container {
+            position: absolute;
+            bottom: 200px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        .button-img {
+            width: 250px;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .button-img:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+
+        .button-img:active {
+            transform: scale(0.95);
+            opacity: 0.6;
+        }
+
+        /* Animasi */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+            100% { transform: translateY(0px); }
+        }
+
+
+        .ornament {
+            position: absolute;
+            transition: transform 0.3s ease-in-out;
+            will-change: transform;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .ornament:hover {
+            animation-play-state: paused; 
+            transform: translateY(-5px) rotate(15deg);
+        }
+
+
+        .ornament1 { 
+            width: 80px; 
+            top: 8%; left: 5%; 
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 0s; 
+        }
+
+        .ornament2 { 
+            width: 200px; 
+            top: 75%; right: 85%; 
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1s; 
+        }
+
+        .ornament3 { 
+            width: 150px; 
+            bottom: 75%; left: 87%; 
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 2s; 
+        }
+    </style>
+</head>
+<body>
+
+
+<img src="img/star.png" class="ornament ornament1">
+<img src="img/magnet.png" class="ornament ornament2">
+<img src="img/magnet1.png" class="ornament ornament3">
+
+<div class="container">
+    <img src="img/btn-start.png" alt="Start" class="button-img" onclick="start()">
+</div>
+
+<script>
+    function start() {
+    window.location.href = "menu.html"; 
+}
+</script>
+
+</body>
+</html>

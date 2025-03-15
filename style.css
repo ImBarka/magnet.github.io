@@ -1,0 +1,78 @@
+
+
+body {
+    cursor: url(img/crusor.png), auto;
+
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #e0f7fa; /* Warna latar belakang yang cerah */
+}
+h1 {
+    text-align: center;
+    color: #00796b; /* Warna hijau */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+.content {
+    max-width: 800px;
+    margin: auto;
+    background: #ffffff; /* Latar belakang putih untuk konten */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.iframe-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    overflow: hidden;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+iframe {
+    position: absolute;
+    width: 95%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: none;
+}
+.questions {
+    margin-top: 20px;
+    background-color: #ffe082; /* Warna latar belakang kuning */
+    padding: 15px;
+    border-radius: 8px;
+}
+.questions h2 {
+    color: #d32f2f; /* Warna merah */
+}
+.questions ul {
+    list-style-type: none;
+    padding: 0;
+}
+.questions li {
+    margin: 10px 0;
+    padding: 10px;
+    background: #81d4fa; /* Warna biru muda */
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+.questions li:hover {
+    background: #4fc3f7; /* Warna biru lebih gelap saat hover */
+}
+a {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #ffffff;
+    background-color: #1976d2; /* Warna biru untuk tautan */
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s;
+}
+a:hover {
+    background-color: #1565c0; /* Warna biru lebih gelap saat hover */
+}

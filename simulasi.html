@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Medan Magnet</title>
+    <style>
+        body {
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: "Comic Sans MS", cursive, sans-serif;
+            background: url('img/bg-menu.png') no-repeat center center fixed;
+            background-size: 100% 100%;
+            background-position: center;
+            position: relative;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .close-button:hover {
+            transform: scale(1.1);
+        }
+
+        h1 {
+            color: white;
+            font-size: 36px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .content {
+            width: 90%;
+            max-width: 1000px;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+        }
+
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-top: 65%; /* Menyesuaikan aspect ratio agar lebih besar */
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        iframe {
+            position: absolute;
+            width: 135%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            border: none;
+        }
+
+        .ornament {
+            position: absolute;
+            transition: transform 0.3s ease-in-out;
+            will-change: transform;
+            animation: float 3s ease-in-out infinite;
+        }
+
+
+        .ornament2 { 
+            width: 120px; 
+            top: 8%; left: 90%; 
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 0s; 
+        }
+
+        .ornament1 { 
+            width: 200px; 
+            top: 75%; right: 85%; 
+            animation: float 3s ease-in-out infinite;
+            animation-delay: 1s; 
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+            100% { transform: translateY(0px); }
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 28px;
+            }
+            .close-button {
+                width: 40px;
+            }
+            .content {
+                width: 95%;
+                padding: 15px;
+            }
+            .iframe-container {
+                padding-top: 75%; /* Aspect ratio lebih tinggi untuk tampilan mobile */
+            }
+            .ornament {
+                width: 60px;
+                height: 60px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <img src="img/btn-close.png" class="close-button" onclick="window.location.href='menu.html'">
+    <h1>Simulasi Medan Magnet</h1>
+    
+    <img src="img/magnet1.png" class="ornament ornament1">
+    <img src="img/magnet.png" class="ornament ornament2">
+
+    <div class="content">
+        <div class="iframe-container">
+            <iframe loading="lazy" 
+                src="https://javalab.org/en/magnetic_force_en/" 
+                allowfullscreen="allowfullscreen" 
+                allow="fullscreen">
+            </iframe>
+        </div>
+    </div>
+
+</body>
+</html>
