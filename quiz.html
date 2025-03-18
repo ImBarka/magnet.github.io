@@ -99,7 +99,7 @@
 
 
         .question, #scoreText {
-            font-size: 64px;
+            font-size: 46px;
             font-weight: bold;
             text-align: center;
             color: white;
@@ -130,6 +130,13 @@
             font-weight: bold;
             text-align: center;
         }
+        
+        .question img {
+            max-width: 100%;
+            height: auto;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
 
         .option span {
             margin-left: 10px;
@@ -147,6 +154,7 @@
     
     <div class="quiz-container" id="quizPage">
         <h2 class="question" id="questionText">Pertanyaan akan muncul di sini</h2>
+        <div id="questionImage"></div>
         <div id="options"></div>
         <button class="next-button" onclick="nextQuestion()" style="display: none;">Selanjutnya</button>
     </div>
@@ -162,13 +170,17 @@
         let score = 0;
         
         const questions = [
-            { q: "Apa warna langit?", options: ["Merah", "Biru", "Hijau", "Kuning"], answer: 1 },
-            { q: "Berapa hasil 2 + 2?", options: ["3", "4", "5", "6"], answer: 1 },
-            { q: "Siapa Presiden pertama Indonesia?", options: ["Soeharto", "Megawati", "Soekarno", "Jokowi"], answer: 2 },
-            { q: "Apa ibukota Indonesia?", options: ["Jakarta", "Bandung", "Surabaya", "Medan"], answer: 0 },
-            { q: "Lambang negara Indonesia adalah?", options: ["Merpati", "Elang", "Garuda", "Rajawali"], answer: 2 }
+            { q: "Perhatikan gambar berikut! Sifat magnet berdasarkan percobaan seperti gambar adalah....", img: "img/gambar1.jpg", options: ["Kutub tidak senama saling tarik menarik", "Garis gaya magnet terletak di sekitar magnet", "Gaya magnet paling kuat pada kutub-kutubnya", "Gaya magnet dapat menembus benda tipis"], answer: 3 },
+            { q: "Perhatikan gambar berikut! Sifat magnet yang sesuai gambar adalah ….", img: "img/gambar2.png", options: ["Magnet memiliki dua kutub", "Magnet mempunyai medan magnet", "Kekuatan magnet terkuat di kutubnya", "Gaya magnet menembus benda tertentu"], answer: 1 },
+            { q: "Perhatikan gambar berikut! Sifat magnet yang sesuai dengan gambar adalah ….", img: "img/gambar3.jpg", options: ["Kutub tidak senama tarik menarik", "Kekuatan terbesar berada pada tengah magnet", "Daerah sekitar magnet dipengaruhi oleh gaya magnet", "Magnet dapat menarik benda-benda yang terbuat dari logam"], answer: 2 },
+            { q: "Perhatikan gambar berikut! Sifat magnet yang tepat sesuai gambar adalah ….", img: "img/gambar4.png", options: ["Gaya tarik paling kuat pada kutubnya", "Kutub senama tarik-menarik", "Kutub senama tolak menolak", "Membentuk medan magnet"], answer: 2 },
+            { q: "Perhatikan gambar berikut! Cara pembuatan magnet seperti gambar secara berurutan adalah ….", img: "img/gambar5.png", options: ["Elektromagnet, gosokan, induksi", "Elektromagnet, induksi, gosokan", "Induksi, gosokan, elektromagnet", "Gosokan, induksi, elektromagnet"], answer: 0 },
+            { q: "Sebuah besi didekatkan dengan sebuah magnet, sehingga besi tersebut menjadi magnet dan mampu menarik sebuk besi yang ada di dekatnya. Hal tersebut adalah pembuatan magnet dengan cara….", options: ["Induksi", "Elektromagnetik", "Gosokan", "Arus Listrik"], answer: 0 },
+            { q: "Membuat magnet dengan cara elektromagnetik dapat dilakukan dengan cara ….", options: ["Melilitkan kawat menghantar pada besi atau baja", "Mengalirkan arus lalui solenoide berinti logam", "Mengalirkan arus melalui kumparan berinti besi", "Mengalirkan arus searah melalui batang besi"], answer: 2 },
+            { q: "Perhatikan benda-benda berikut! Magnet dapat menarik benda magnetis dan tidak dapat menarik benda non magnetis. Benda-benda di atas yang termasuk benda magnetis adalah …", img: "img/gambar8.jpg",options: ["I, II dan IV", "I, III, dan IV", "III, IV dan V", "II, III dan IV"], answer: 1 },
+            { q: "Siswa kelas 5 akan melaksanakan percobaan menggunakan alat dan bahan tersebut. Tujuan percobaan yang akan dilakukan yaitu untuk mengetahui...", options: ["Besar medan magnet sekitar", "Kecepatan magnet bergerak", "Dorongan benda pada magnet", "Benda yang dapat ditarik magnet"], answer: 3 },
+            { q: "Magnet memberikan banyak manfaat dalam kehidupan sehari-hari. Berikut ini salah satu contoh manfaatnya yaitu...", options: ["Sepatu sepak bola", "Thermometer", "Balon udara", "Pintu kulkas"], answer: 3 }
         ];
-        
         function startQuiz() {
             username = document.getElementById("username").value;
             if (username.trim() === "") {
@@ -190,6 +202,13 @@
             document.getElementById("questionText").textContent = "Soal " + (currentQuestion + 1) + " - " + q.q;
             const optionsDiv = document.getElementById("options");
             optionsDiv.innerHTML = "";
+
+            if (q.img) {
+                document.getElementById("questionImage").innerHTML = `<img src="${q.img}" alt="Question Image">`;
+            } else {
+                document.getElementById("questionImage").innerHTML = "";
+            }
+
             q.options.forEach((option, index) => {
                 const optionDiv = document.createElement("div");
                 optionDiv.className = "option";
@@ -213,7 +232,7 @@
             document.getElementById("scorePage").style.display = "block";
 
             // Menghitung skor berdasarkan jumlah jawaban benar (1 soal = 20 poin)
-            let finalScore = score * 20;
+            let finalScore = score * 10;
 
             // Menampilkan skor tanpa koma di antara nama dan nilai
             document.getElementById("scoreText").textContent = username + " skor Anda: " + finalScore;
